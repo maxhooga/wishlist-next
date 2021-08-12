@@ -18,6 +18,7 @@ const SContent = styled.div`
   min-width: 960px;
 `;
 
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={{}}>
@@ -31,4 +32,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     </ThemeProvider>
   );
 }
-export default MyApp;
+export default MyApp

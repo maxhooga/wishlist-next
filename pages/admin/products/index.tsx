@@ -1,5 +1,5 @@
-import { Header } from "../../components/header";
-import Subheader from "../../components/subheader";
+import { Header } from "../../../components/header";
+import Subheader from "../../../components/subheader";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchProducts,
@@ -7,10 +7,10 @@ import {
   getPerPage,
   getProducts,
   getTotal,
-} from "../../store/products";
-import WarningIcon from "../../public/warning-icon.svg";
-import Checked from "../../public/checked.svg";
-import Unchecked from "../../public/unchecked.svg";
+} from "../../../store/products";
+import WarningIcon from "../../../public/warning-icon.svg";
+import Checked from "../../../public/checked.svg";
+import Unchecked from "../../../public/unchecked.svg";
 import React from "react";
 import Image from "next/image";
 import {
@@ -22,7 +22,7 @@ import {
 } from "antd";
 import styled from "styled-components";
 import { EditOutlined, DeleteOutlined, FormOutlined } from "@ant-design/icons";
-import { EditProduct } from "../../components/edit-product";
+import { EditProduct } from "../../../components/edit-product";
 
 const processImages = (images?: string[]) => {
   if (images) {
@@ -43,7 +43,7 @@ const InStockCell = ({ inStock }: { inStock: boolean }) => (
 );
 
 const getEditProductLink = (id: string) => {
-  return `/products/${id}`;
+  return `/admin/products/${id}`;
 };
 
 const Cell = ({
