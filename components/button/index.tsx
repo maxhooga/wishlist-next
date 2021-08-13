@@ -7,7 +7,7 @@ const SButtonWrapper = styled.div`
   display: flex;
 `;
 
-const SButtonIcon = styled.div`
+const SButtonIcon = styled.div<{ color?: string }>`
   width: 30px;
   height: 30px;
   max-width: 30px;
@@ -19,10 +19,14 @@ const SButtonIcon = styled.div`
   align-items: center;
   background-color: #e8e8e8;
   color: black;
+  i {
+    color: ${({ color }) => (color ? color : "#2b2b2b")};
+  }
 `;
 
-const SButton = styled.button`
-  background-color: #2b2b2b;
+const SButton = styled.button<{ backgroundColor?: string }>`
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor ? backgroundColor : "#2b2b2b"};
   color: white;
   display: block;
   height: 100%;
@@ -33,13 +37,14 @@ const SButton = styled.button`
 export type Props = {
   icon: string | React.ReactNode;
   text: string;
+  color?: string;
 };
 
-export function Button({ icon, text, ...rest }: Props) {
+export function Button({ icon, text, color, ...rest }: Props) {
   return (
     <SButtonWrapper {...rest}>
-      <SButtonIcon>{icon}</SButtonIcon>
-      <SButton>{text}</SButton>
+      <SButtonIcon color={color}>{icon}</SButtonIcon>
+      <SButton backgroundColor={color}>{text}</SButton>
     </SButtonWrapper>
   );
 }

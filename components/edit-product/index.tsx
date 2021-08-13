@@ -3,6 +3,9 @@ import styled from "styled-components";
 import Image from "next/image";
 import { Button } from "../button";
 import SyncSVG from "../../public/sync.svg";
+import PlusSVG from "../../public/plus.svg";
+import { UploadFile } from "../upload-file";
+import { DeleteOutlined, UploadOutlined } from "@ant-design/icons";
 
 const SHeader = styled.header`
   padding: 30px 20px 10px 20px;
@@ -15,7 +18,7 @@ const SHeader = styled.header`
 `;
 
 const SHeaderTitle = styled.div`
-  width: 300px;
+  width: 600px;
 `;
 
 const SHeaderId = styled.div``;
@@ -36,6 +39,7 @@ const SScopeStatus = styled.div`
 const SFormSection = styled(Form.Item)`
   padding: 10px 0;
   font-size: 14px;
+  margin: 0;
   label {
     width: 110px;
     font-family: "Roboto", sans-serif;
@@ -53,6 +57,42 @@ const SButton = styled(Button)`
   margin-left: 10px;
 `;
 
+const SUploadFile = styled(UploadFile)`
+  .ant-upload {
+    background-color: white;
+    border: 2px dashed #eaeaea;
+    width: 48px;
+    height: 48px;
+    border-radius: 5px;
+  }
+  .ant-upload.ant-upload-select-picture-card {
+    border: none;
+  }
+`;
+
+const SFooterWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+
+function ModalFooter() {
+  return (
+    <SFooterWrapper>
+      <SButton
+        color="#9B0000"
+        text="REMOVE"
+        icon={<DeleteOutlined style={{ color: "#9B0000" }} />}
+      />
+      <SButton
+        color="#11571A"
+        text="SAVE"
+        icon={<UploadOutlined style={{ color: "#11571A" }} />}
+      />
+    </SFooterWrapper>
+  );
+}
+
 export type Prop = {
   width: number;
   product: any;
@@ -60,9 +100,8 @@ export type Prop = {
 };
 
 export const EditProduct = ({ width, product, visible }: Prop) => {
-  console.log(product);
   return (
-    <Modal width={width} visible={visible}>
+    <Modal width={width} visible={visible} footer={<ModalFooter />}>
       <SHeader>
         <SHeaderTitle>
           UPDATE {product.title}
@@ -108,6 +147,13 @@ export const EditProduct = ({ width, product, visible }: Prop) => {
           rules={[{ required: true }]}
         >
           <Input value={product.category} />
+        </SFormSection>
+        <SFormSection name="images">
+          <SUploadFile
+            button={<Image src={PlusSVG} />}
+            action=""
+            listType="picture-card"
+          />
         </SFormSection>
       </SContent>
     </Modal>
