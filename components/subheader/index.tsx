@@ -3,6 +3,7 @@ import Image from "next/image";
 import Info from "../../public/info.svg";
 import { useSelector } from "react-redux";
 import { getProducts } from "../../store/products";
+import { Button } from "../button";
 
 export const SNavigation = styled.nav`
   max-width: 1280px;
@@ -54,35 +55,10 @@ export const SInputWrapper = styled.div`
   }
 `;
 
-export const SButtonWrapper = styled.div`
-  height: 30px;
-  color: white;
-  display: flex;
-`;
-
-export const SButtonIcon = styled.div`
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #e8e8e8;
-  color: black;
-`;
-
-export const SButton = styled.button`
-  background-color: #2b2b2b;
-  color: white;
-  display: block;
-  height: 100%;
-  padding: 0 10px;
-`;
-
 export const Subheader = () => {
   const products = useSelector(getProducts);
   const errors = products.filter(
-    ({ product, errors }: { product: any[]; errors: any[] }) =>
-      (errors || []).length > 0
+    ({ errors }: { product: any[]; errors: any[] }) => (errors || []).length > 0
   );
   return (
     <SNavigation>
@@ -101,10 +77,7 @@ export const Subheader = () => {
         <SInputWrapper>
           <input />
         </SInputWrapper>
-        <SButtonWrapper>
-          <SButtonIcon>+</SButtonIcon>
-          <SButton>ADD NEW</SButton>
-        </SButtonWrapper>
+        <Button text={"ADD NEW"} icon={"+"} />
       </SActions>
     </SNavigation>
   );

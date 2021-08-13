@@ -253,7 +253,13 @@ export const Products = () => {
         pagination={pagination}
         columns={columns(setActiveProductId)}
       />
-      {product && <EditProduct product={product.product} visible={!!product} />}
+      {product && (
+        <EditProduct
+          width={1024}
+          product={product.product}
+          visible={!!product}
+        />
+      )}
     </>
   );
 };
